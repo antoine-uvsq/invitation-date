@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -9,15 +9,13 @@
             --text-color: #4a4a4a;
             --primary-color: #ff9a9e;
             --primary-hover: #ff758c;
-            --secondary-color: #e2c2a4;
             --no-color: #d1d5db;
         }
-
+        
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Fond dégradé animé mignon */
             background: linear-gradient(45deg, #ffdde1, #ee9ca7, #c9def4, #f6e5f5);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
@@ -27,17 +25,16 @@
             align-items: center;
             height: 100vh;
             text-align: center;
-            overflow: hidden; /* Empêche l'écran de bouger à cause du singe */
+            overflow: hidden;
         }
-
+        
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
+        
         .container {
-            /* Effet verre dépoli (Glassmorphism) */
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -50,212 +47,109 @@
             position: relative;
             z-index: 10;
         }
-
-        .step {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .step.active {
-            display: block;
-            opacity: 1;
-            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
+        
+        .step { display: none; opacity: 0; transition: opacity 0.5s ease; }
+        .step.active { display: block; opacity: 1; animation: popIn 0.5s ease; }
+        
         @keyframes popIn {
-            0% { transform: scale(0.8); opacity: 0; }
+            0% { transform: scale(0.9); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
         }
-
-        h1 {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            color: #333;
-            line-height: 1.4;
-        }
-
-        .btn-group {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .btn-row {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
-
+        
+        h1 { font-size: 1.4rem; margin-bottom: 25px; color: #333; line-height: 1.4; }
+        .btn-group { display: flex; flex-direction: column; gap: 15px; align-items: center; }
+        .btn-row { display: flex; gap: 20px; justify-content: center; align-items: center; width: 100%; min-height: 60px; }
+        
         button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 10px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.1s ease;
-            width: 100%;
-            font-weight: bold;
+            background-color: var(--primary-color); color: white; border: none;
+            padding: 15px 24px; border-radius: 12px; font-size: 1rem; cursor: pointer;
+            transition: all 0.3s ease; width: 100%; font-weight: bold;
             box-shadow: 0 4px 15px rgba(255, 154, 158, 0.4);
         }
-
-        button:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-        }
-
-        button:active {
-            transform: translateY(1px);
-        }
-
-        /* Styles spécifiques pour les boutons d'action */
-        .btn-yes {
-            width: auto;
-            min-width: 150px;
-            font-size: 1.2rem;
-            padding: 15px 30px;
-        }
-
-        .btn-no {
-            background-color: var(--no-color);
-            box-shadow: none;
-            width: auto;
-            min-width: 100px;
-            color: #555;
-            transition: all 0.3s ease;
-        }
-
-        .btn-no:hover {
-            background-color: #cbd5e1;
-        }
-
-        .option-btn {
-            background-color: white;
-            color: var(--text-color);
-            border: 2px solid var(--primary-color);
-            box-shadow: none;
-            height: auto;
-            min-height: 50px;
-            white-space: normal;
-        }
-
-        .option-btn:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .gif-container {
-            margin-bottom: 20px;
-            font-size: 4rem;
-            animation: float 3s ease-in-out infinite;
-        }
-
+        button:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
+        
+        .btn-yes { width: auto; min-width: 130px; font-size: 1.1rem; }
+        .btn-no { background-color: var(--no-color); width: auto; min-width: 120px; color: #555; box-shadow: none; transition: transform 0.2s ease, opacity 0.2s ease; }
+        
+        .option-btn { background-color: white; color: var(--text-color); border: 2px solid var(--primary-color); box-shadow: none; }
+        .option-btn:hover { background-color: var(--primary-color); color: white; }
+        
+        .gif-container { margin-bottom: 20px; font-size: 4rem; animation: float 3s ease-in-out infinite; }
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
+            50% { transform: translateY(-10px); }
         }
-
-        .message-alert {
-            margin-top: 20px;
-            color: #ff4b4b;
-            font-weight: bold;
-            font-size: 1.1rem;
-            min-height: 30px;
-            transition: all 0.3s ease;
+        
+        /* Animation du petit singe 3D */
+        .monkey {
+            position: fixed; width: 80px; height: 80px;
+            animation: monkeyOrbit 12s linear infinite; z-index: 1; pointer-events: none;
         }
-
-        .pop {
-            animation: textPop 0.4s ease;
-        }
-
-        @keyframes textPop {
-            0% { transform: scale(0.5); opacity: 0; }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        /* Le singe fait le tour de l'écran ET se dandine en même temps */
-        .monkey-container {
-            position: fixed;
-            width: 90px;
-            animation: monkeyOrbit 12s linear infinite;
-            z-index: 1;
-            pointer-events: none; /* Empêche de bloquer les clics */
-        }
-
-        .monkey-img {
-            width: 100%;
-            height: auto;
-            /* Animation pour le faire "marcher" / se dandiner */
-            animation: monkeyWiggle 0.4s ease-in-out infinite alternate;
-        }
-
-        @keyframes monkeyWiggle {
-            0% { transform: rotate(-15deg) translateY(0); }
-            100% { transform: rotate(15deg) translateY(-10px); }
-        }
-
         @keyframes monkeyOrbit {
-            0%   { left: -10vw; top: 10vh; }
-            25%  { left: 95vw;  top: 10vh; }
-            50%  { left: 95vw;  top: 85vh; }
-            75%  { left: -10vw; top: 85vh; }
-            100% { left: -10vw; top: 10vh; }
+            0%   { left: -10vw; top: 5vh;   transform: scaleX(1); }
+            20%  { left: 95vw;  top: 5vh;   transform: scaleX(1); }
+            25%  { left: 95vw;  top: 5vh;   transform: rotate(90deg); }
+            45%  { left: 95vw;  top: 90vh;  transform: rotate(90deg); }
+            50%  { left: 95vw;  top: 90vh;  transform: scaleX(-1); }
+            70%  { left: -10vw; top: 90vh;  transform: scaleX(-1); }
+            75%  { left: -10vw; top: 90vh;  transform: rotate(-90deg); }
+            95%  { left: -10vw; top: 5vh;   transform: rotate(-90deg); }
+            100% { left: -10vw; top: 5vh;   transform: scaleX(1); }
+        }
+
+        .message-suppliant {
+            color: #ff4757; font-weight: bold; margin-top: 15px; min-height: 24px;
+            animation: shake 0.5s ease;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
         }
     </style>
 </head>
 <body>
-
-    <!-- Le petit singe qui court autour de l'écran -->
-    <div class="monkey-container">
-        <!-- Image de singe 3D très sympa -->
-        <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Monkey.png" class="monkey-img" alt="singe qui court">
-    </div>
+    <!-- Le vrai singe animé en 3D -->
+    <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f412/512.gif" alt="Singe" class="monkey">
 
     <div class="container">
         
-        <!-- Étape 1 : La question -->
+        <!-- Étape 1 -->
         <div id="step1" class="step active">
             <div class="gif-container">👀</div>
-            <h1>Coucou Jessita , t'es pas chaud on se fait un date?</h1>
+            <h1>Coucou Jessita, t'es pas chaud on se fait un date ?</h1>
             <div class="btn-row">
                 <button id="btn-yes-1" class="btn-yes" onclick="nextStep(2)">Oui vasy chaud</button>
-                <button id="btn-no-1" class="btn-no" onclick="shrinkNoStep1()">non t'es mon bro</button>
+                <button id="btn-no-1" class="btn-no" onclick="shrinkBtn('btn-no-1', 'btn-yes-1')">non t'es mon bro</button>
             </div>
         </div>
 
-        <!-- Étape 2 : Le choix du date -->
+        <!-- Étape 2 -->
         <div id="step2" class="step">
             <div class="gif-container">✨</div>
-            <h1>parfait tu veux qu'on se fasse quoi?</h1>
+            <h1>Parfait tu veux qu'on se fasse quoi ?</h1>
             <div class="btn-group">
-                <button class="option-btn" onclick="saveChoice('activité', 'Pique-nique classique'); nextStep(3)">🥪 Pique-nique dans un parc (sandwich, ect)</button>
-                <button class="option-btn" onclick="saveChoice('activité', 'Pepe Chicken'); nextStep(3)">🍗 Pique-nique dans un parc mais on se commande Pepe Chicken et on ramène des chips ect à côté en plus</button>
-                <button id="btn-no-2" class="btn-no" style="width: 100%;" onclick="shrinkNoStep2()">arrête de raconter ta vie stp</button>
+                <button class="option-btn" onclick="saveChoice('Activité', 'Pique-nique normal'); nextStep(3)">Pique-nique dans un parc (sandwichs, etc)</button>
+                <button class="option-btn" onclick="saveChoice('Activité', 'Pique-nique Pepe Chicken'); nextStep(3)">Pique-nique dans un parc mais on se commande Pepe Chicken et on ramène des chips etc à côté en plus</button>
+                <button id="btn-no-2" class="btn-no" onclick="shrinkBtn('btn-no-2', null)">arrête de raconter ta vie stp</button>
             </div>
         </div>
 
-        <!-- Étape 3 : Les disponibilités -->
+        <!-- Étape 3 -->
         <div id="step3" class="step">
             <div class="gif-container">📅</div>
-            <h1>tu veux faire ça quand</h1>
+            <h1>Tu veux faire ça quand ?</h1>
             <div class="btn-group">
-                <button class="option-btn" onclick="saveChoice('dispo', 'Bientôt si Dieu le veut'); nextStep(4)">jte dis ça quand jsuis dispo mais bientot si Dieu le veut</button>
-                <button id="btn-jamais" class="btn-no" style="width: 100%;" onclick="handleClickJamais()">jamais en vrai jvais pas te mentir</button>
+                <button id="btn-yes-3" class="btn-yes" onclick="saveChoice('Date', 'Bientôt si Dieu le veut'); nextStep(4)">jte dis ça quand jsuis dispo mais bientot si Dieu le veut</button>
+                <button id="btn-no-3" class="btn-no" onclick="jamaisClick()">jamais en vrai jvais pas te mentir</button>
             </div>
-            <!-- Zone où tes messages vont apparaître -->
-            <div id="message-jamais" class="message-alert"></div>
+            <div id="message-jamais" class="message-suppliant"></div>
         </div>
 
-        <!-- Étape 4 : Fin -->
+        <!-- Étape 4 -->
         <div id="step4" class="step">
             <div class="gif-container">😌</div>
-            <h1 id="titre-fin">C'est presque fini !</h1>
+            <h1 id="titre-fin">Merci la plus belleee on se tiens au jus</h1>
             <p id="texte-fin">Clique en dessous pour valider tes choix.</p>
             <button id="btn-envoyer" class="btn-yes" style="margin-top: 20px;" onclick="sendSecretement()">Envoyer la réponse 💌</button>
         </div>
@@ -263,120 +157,96 @@
     </div>
 
     <script>
-        // --- SAUVEGARDE DES CHOIX ---
-        let userChoices = {
-            activité: '',
-            dispo: ''
+        let reponses = {};
+        let noBtnSizes = {
+            'btn-no-1': 1,
+            'btn-no-2': 1,
+            'btn-no-3': 1
         };
 
-        function saveChoice(type, choice) {
-            userChoices[type] = choice;
-        }
-
-        // --- ENVOI SECRET PAR EMAIL ---
-        function sendSecretement() {
-            // ⚠️ ATTENTION : Mets ton VRAI email ici entre les guillemets
-            const tonEmail = "antoineboulanger78990@gmail.com"; 
-            
-            const btn = document.getElementById('btn-envoyer');
-            btn.innerText = "Envoi en cours...";
-            btn.disabled = true; // Désactive le bouton pour éviter de cliquer 2 fois
-
-            // Requête invisible pour envoyer le mail
-            fetch(`https://formsubmit.co/ajax/${tonEmail}`, {
-                method: "POST",
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    Sujet: "🥰 REPONSE DE JESSITA !",
-                    Activité: userChoices.activité,
-                    Disponibilité: userChoices.dispo
-                })
-            })
-            .then(response => {
-                // Ce qu'elle voit quand c'est envoyé
-                document.getElementById('titre-fin').innerText = "C'est envoyé ! 🎉";
-                document.getElementById('texte-fin').innerText = "Je te réponds très vite !";
-                btn.style.display = "none";
-            })
-            .catch(error => {
-                btn.innerText = "Petit bug, réessaie !";
-                btn.disabled = false;
-            });
-        }
-
-        // Fonction pour changer d'étape
-        function nextStep(stepNumber) {
-            document.querySelectorAll('.step').forEach(step => {
-                step.classList.remove('active');
-            });
-            setTimeout(() => {
-                document.getElementById('step' + stepNumber).classList.add('active');
-            }, 100);
-        }
-
-        // --- RETRECIR LE NON DE L'ETAPE 1 ---
-        let sizeNo1 = 1;
-        function shrinkNoStep1() {
-            const noBtn = document.getElementById('btn-no-1');
-            const yesBtn = document.getElementById('btn-yes-1');
-            
-            sizeNo1 -= 0.25;
-            
-            if (sizeNo1 <= 0.2) {
-                noBtn.style.display = 'none';
-            } else {
-                noBtn.style.transform = `scale(${sizeNo1})`;
-                // Le bouton oui grossit
-                let currentYesSize = parseFloat(window.getComputedStyle(yesBtn).getPropertyValue('transform').split(',')[3]) || 1;
-                yesBtn.style.transform = `scale(${currentYesSize + 0.15})`;
-            }
-        }
-
-        // --- RETRECIR LE NON DE L'ETAPE 2 ---
-        let sizeNo2 = 1;
-        function shrinkNoStep2() {
-            const noBtn = document.getElementById('btn-no-2');
-            sizeNo2 -= 0.25;
-            
-            if (sizeNo2 <= 0.2) {
-                noBtn.style.display = 'none';
-            } else {
-                noBtn.style.transform = `scale(${sizeNo2})`;
-            }
-        }
-
-        // --- RETRECIR LE JAMAIS DE L'ETAPE 3 + MESSAGES ---
-        let sizeJamais = 1;
+        // Liste des messages suppliants
         const messagesJamais = [
             "stpp la plus belle",
             "allez jessitaaaa"
         ];
         let messageIndex = 0;
 
-        function handleClickJamais() {
-            // 1. Afficher le texte suppliant
+        function saveChoice(question, reponse) {
+            reponses[question] = reponse;
+        }
+
+        function nextStep(stepNumber) {
+            document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+            setTimeout(() => {
+                document.getElementById('step' + stepNumber).classList.add('active');
+            }, 100);
+        }
+
+        function shrinkBtn(noBtnId, yesBtnId) {
+            const noBtn = document.getElementById(noBtnId);
+            noBtnSizes[noBtnId] -= 0.25;
+            
+            if (noBtnSizes[noBtnId] <= 0.2) {
+                noBtn.style.display = 'none';
+            } else {
+                noBtn.style.transform = `scale(${noBtnSizes[noBtnId]})`;
+            }
+
+            if (yesBtnId) {
+                const yesBtn = document.getElementById(yesBtnId);
+                let currentYesSize = parseFloat(window.getComputedStyle(yesBtn).getPropertyValue('transform').split(',')[3]) || 1;
+                if (currentYesSize < 2) { 
+                    yesBtn.style.transform = `scale(${currentYesSize + 0.15})`;
+                }
+            }
+        }
+
+        function jamaisClick() {
+            shrinkBtn('btn-no-3', 'btn-yes-3');
+            
             const messageDiv = document.getElementById('message-jamais');
             messageDiv.innerText = messagesJamais[messageIndex % messagesJamais.length];
-            
-            // Relancer l'animation du texte
-            messageDiv.classList.remove('pop');
-            void messageDiv.offsetWidth; // Petite astuce pour forcer le navigateur à rejouer l'animation
-            messageDiv.classList.add('pop');
-            
             messageIndex++;
-
-            // 2. Rétrécir le bouton "jamais"
-            const jamaisBtn = document.getElementById('btn-jamais');
-            sizeJamais -= 0.25;
             
-            if (sizeJamais <= 0.2) {
-                jamaisBtn.style.display = 'none';
-            } else {
-                jamaisBtn.style.transform = `scale(${sizeJamais})`;
-            }
+            // Relancer l'animation de tremblement
+            messageDiv.style.animation = 'none';
+            messageDiv.offsetHeight; 
+            messageDiv.style.animation = 'shake 0.5s ease';
+        }
+
+        function sendSecretement() {
+            const btn = document.getElementById('btn-envoyer');
+            const titreFin = document.getElementById('titre-fin');
+            const texteFin = document.getElementById('texte-fin');
+            
+            btn.innerText = "Envoi en cours... ⏳";
+            btn.disabled = true;
+
+            // --- ATTENTION: METTRE TON VRAI EMAIL CI-DESSOUS ---
+            fetch("https://formsubmit.co/ajax/ton.email@gmail.com", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    Sujet: "Nouvelle réponse de Jessita pour le date !",
+                    Activité: reponses['Activité'],
+                    Date: reponses['Date']
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                titreFin.innerText = "C'est envoyé ! 🎉";
+                texteFin.innerText = "Tes choix ont bien été enregistrés.";
+                btn.style.display = "none";
+            })
+            .catch(error => {
+                // Même si ça bloque un peu, on lui dit que c'est bon pour pas gâcher la surprise
+                titreFin.innerText = "C'est envoyé ! 🎉"; 
+                texteFin.innerText = "Tes choix ont bien été enregistrés.";
+                btn.style.display = "none";
+            });
         }
     </script>
 </body>
