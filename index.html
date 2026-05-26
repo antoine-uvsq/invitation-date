@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Une petite question pour toi...</title>
+    <style>
+        :root {
+            --bg-color: #f7f3ee;
+            --text-color: #4a4a4a;
+            --primary-color: #7b9ea8;
+            --primary-hover: #61828c;
+            --secondary-color: #e2c2a4;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .step {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .step.active {
+            display: block;
+            opacity: 1;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        #btn-yes {
+            width: auto;
+            min-width: 120px;
+            font-size: 1.2rem;
+            padding: 15px 30px;
+        }
+
+        #btn-no {
+            background-color: var(--secondary-color);
+            width: auto;
+            min-width: 100px;
+            color: #333;
+        }
+
+        .option-btn {
+            background-color: white;
+            color: var(--text-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .option-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .gif-container {
+            margin-bottom: 20px;
+            font-size: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Étape 1 : La question -->
+        <div id="step1" class="step active">
+            <div class="gif-container">👀</div>
+            <h1>Est-ce que tu accepterais d'aller à un date avec moi ?</h1>
+            <div class="btn-row">
+                <button id="btn-yes" onclick="nextStep(2)">Oui !</button>
+                <button id="btn-no" onclick="shrinkNo()">Non</button>
+            </div>
+        </div>
+
+        <!-- Étape 2 : Le choix du date -->
+        <div id="step2" class="step">
+            <div class="gif-container">✨</div>
+            <h1>Génial ! Qu'est-ce qui te tente le plus ?</h1>
+            <div class="btn-group">
+                <button class="option-btn" onclick="nextStep(3)">☕ Un café posé</button>
+                <button class="option-btn" onclick="nextStep(3)">🍻 Boire un verre</button>
+                <button class="option-btn" onclick="nextStep(3)">🚶‍♀️ Une balade tranquille</button>
+                <button class="option-btn" onclick="nextStep(3)">🎨 Quelque chose d'original</button>
+            </div>
+        </div>
+
+        <!-- Étape 3 : Les disponibilités -->
+        <div id="step3" class="step">
+            <div class="gif-container">📅</div>
+            <h1>Parfait. Plutôt quel moment ?</h1>
+            <div class="btn-group">
+                <button class="option-btn" onclick="nextStep(4)">En semaine</button>
+                <button class="option-btn" onclick="nextStep(4)">Ce week-end</button>
+                <button class="option-btn" onclick="nextStep(4)">On s'écrit pour voir ça</button>
+            </div>
+        </div>
+
+        <!-- Étape 4 : Fin -->
+        <div id="step4" class="step">
+            <div class="gif-container">😌</div>
+            <h1>C'est bien noté !</h1>
+            <p>Prépare-toi, je t'écris très vite avec les détails.</p>
+        </div>
+
+    </div>
+
+    <script>
+        let noButtonSize = 1;
+
+        function nextStep(stepNumber) {
+            // Cacher toutes les étapes
+            document.querySelectorAll('.step').forEach(step => {
+                step.classList.remove('active');
+            });
+            // Afficher l'étape demandée
+            setTimeout(() => {
+                document.getElementById('step' + stepNumber).classList.add('active');
+            }, 100);
+        }
+
+        function shrinkNo() {
+            const noBtn = document.getElementById('btn-no');
+            const yesBtn = document.getElementById('btn-yes');
+            
+            noButtonSize -= 0.2;
+            
+            if (noButtonSize <= 0.2) {
+                noBtn.style.display = 'none';
+            } else {
+                noBtn.style.transform = `scale(${noButtonSize})`;
+                // Le bouton oui grossit un peu à chaque fois qu'on clique sur non
+                let currentYesSize = parseFloat(window.getComputedStyle(yesBtn).getPropertyValue('transform').split(',')[3]) || 1;
+                yesBtn.style.transform = `scale(${currentYesSize + 0.1})`;
+            }
+        }
+    </script>
+</body>
+</html>
